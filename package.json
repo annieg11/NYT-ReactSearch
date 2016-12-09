@@ -1,0 +1,30 @@
+{
+  "name": "nytreact",
+  "version": "1.0.0",
+  "description": "App for scrubbing articles from the NY Times.",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/annieg11/NYT-ReactSearch.git"
+  },
+  "author": "annie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/annieg11/NYT-ReactSearch/issues"
+  },
+  "homepage": "https://github.com/annieg11/NYT-ReactSearch#readme",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "body-parser": "^1.15.2",
+    "express-handlebars": "^3.0.0",
+    "mongojs": "^2.4.0",
+    "moongoose": "0.0.5",
+    "morgan": "^1.7.0",
+    "node": "0.0.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  }
+}
