@@ -4,11 +4,14 @@ var mongoose = require('mongoose');
 var app = express();
 
 var PORT = process.env.PORT || 3000;
-
+// Run Morgan for Logging
+app.use(logger("dev"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use('/', express.static(__dirname + '/public'));
-app.listen(PORT, function() {
-  console.log('App running on port 3000!');
-});
+
 // -------------------------------------------------
 
 //MongoDB Configuration configuration (Change this URL to your own DB)
@@ -24,3 +27,8 @@ db.once('open', function () {
   console.log('Mongoose connection successful.');
 });
 
+
+
+app.listen(PORT, function() {
+  console.log('App running on port 3000!');
+});
