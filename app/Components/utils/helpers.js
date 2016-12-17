@@ -27,7 +27,7 @@ var axios = require("axios");
 },
 // This function hits our own server to retrieve the record of query results
   getSavedArticle: function() {
-    return axios.get("/api");
+    return axios.get("/api")
     .then(function(response){
 
         console.log(response);
@@ -38,7 +38,7 @@ var axios = require("axios");
 
   // This function posts new searches to our database.
   postSavedArticle: function(topic) {
-    return axios.post("/api", { topic: topic });
+    return axios.post("/api", { topic: topic })
     .then(function(results){
 
         console.log("Posted to MongoDB");
