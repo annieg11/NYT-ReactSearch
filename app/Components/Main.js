@@ -1,10 +1,10 @@
 // Include React 
 var React = require('react');
-var axios = require('axios');
+// var axios = require('axios');
 // Here we include all of the sub-components
-var Results = require('./children/Results.js');
-var Article = require('./children/Article.js');
-var Saved = require('./children/Saved.js');
+var Results = require('./children/Results');
+var Search = require('./children/Search');
+var Saved = require('./children/Saved');
 
 // Helper Function
 var helpers = require('./utils/helpers.js');
@@ -62,16 +62,10 @@ var Main = React.createClass({
         .then(function(data){
           if (data != this.state.results)
           {
-            console.log("Articles", data);
-
-            /* TODO: fix this part to get the article text.
-            this.setState({
-              results: data
-            });
-            */
+            console.log("Search", data);
 
             // After we've received the result... then post the search topic to our history. 
-            helpers.postHistory(this.state.topic)
+            helpers.postSavedArticle(this.state.topic)
               .then(function(data){
                 console.log("Updated!");
 
@@ -121,7 +115,7 @@ var Main = React.createClass({
         <div className="row">
 
           <div className="jumbotron">
-            <h2 className="text-center"><u>New York Times Article Search!</u></h2>
+            <h2 className="text-center">New York Times Article Search!</h2>
             <p className="text-center">Search for the articles that interests you!</p>
           </div>
 
@@ -133,7 +127,7 @@ var Main = React.createClass({
 
           <div className="col-md-6">
         
-            <Results results={this.state.results} />
+            <Results queryResults={this.state.results} />
 
           </div>
 

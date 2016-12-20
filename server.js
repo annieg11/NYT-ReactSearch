@@ -3,11 +3,11 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
-
+var webpack = require('webpack');
 var Articles = require('./models/articles.js');
 // var helpers = require('../utils/helpers');
 var app = express();
-
+// app.use(function (req, res, next) { res.setHeader('Access-Control-Allow-Origin', '*'); next(); });
 var PORT = process.env.PORT || 3000;
 // Run Morgan for Logging
 app.use(logger("dev"));
@@ -31,15 +31,20 @@ db.on('error', function (err) {
 db.once('open', function () {
   console.log('Mongoose connection successful.');
 });
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // Main Route. This route will redirect to our rendered React application
-app.get('/', function(req, res){
-  res.sendFile('./public/index.html');
+app.get('/', function(req, res,next){
+  res.sendFile(_dirname +'/public/index.html');
 })
 
 // This is the route we will send GET requests to retrieve our most recent search data.
 // We will call this route the moment our page gets rendered
-app.get('/api/', function(req, res) {
+app.get('/api/saved', function(req, res,next) {
 
   // We will find all the records, sort it in descending order, then limit the records to 5
   // History.find({}).sort([['date', 'descending']]).limit(5)
@@ -56,7 +61,7 @@ app.get('/api/', function(req, res) {
 });
 
 // This is the route we will send POST requests to save each search.
-app.post('/api/', function(req, res){
+app.post('/api/saved', function(req, res,next){
 //  var newSearch = new History(req.body);
   var newSearch = new Articles(req.body);
   console.log("BODY: " + req.body.topic);

@@ -8,8 +8,8 @@ var Results = React.createClass({
           <h3 className="panel-title text-center">Results</h3>
         </div>
         <div className="panel-body text-center">
-          <h1>Article:</h1>
-          <p>{this.props.articles}</p>
+          <h1>Search:</h1>
+          <p>{this.props.queryResults}</p>
         </div>
       </div>
     );
